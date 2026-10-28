@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b14"><title>J.A.R.V.I.S. — Assistente pessoal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-mark"><span></span><span></span><span></span></div><div><div class="brand-name">J.A.R.V.I.S.</div><div class="brand-sub">PERSONAL INTELLIGENCE</div></div><button class="icon-btn mobile-close" id="closeSidebar" aria-label="Fechar menu">×</button></div>
+    <button class="new-chat" id="newChat"><span class="plus">＋</span> Nova conversa <kbd>⌘ K</kbd></button>
+    <div class="nav-label">ESPAÇO DE TRABALHO</div>
+    <button class="nav-item active" data-view="chat"><span class="nav-icon">◈</span> Assistente <span class="nav-dot"></span></button>
+    <button class="nav-item" data-view="library"><span class="nav-icon">▤</span> Biblioteca <span class="soon">LOCAL</span></button>
+    <button class="nav-item" data-view="tools"><span class="nav-icon">⌘</span> Ferramentas</button>
+    <div class="history-head"><span class="nav-label">RECENTES</span><button class="tiny-btn" id="clearHistory" title="Limpar histórico">···</button></div>
+    <div class="history-list" id="historyList"></div>
+    <div class="sidebar-bottom"><div class="api-status"><span class="status-light" id="statusLight"></span><div><b id="statusTitle">Verificando conexão</b><small id="statusText">Assistente local</small></div><button class="tiny-btn" id="settingsBtn" title="Configurações">⚙</button></div><div class="profile"><div class="avatar">J</div><div class="profile-text"><b>Operador</b><small>Espaço pessoal</small></div><span class="profile-more">•••</span></div></div>
+  </aside>
+  <main class="main-area">
+    <header class="topbar"><button class="icon-btn menu-toggle" id="openSidebar" aria-label="Abrir menu">☰</button><div class="breadcrumb"><span>Workspace</span><span class="slash">/</span><b id="crumbTitle">Assistente</b></div><div class="top-actions"><div class="secure-pill"><span>◈</span> SESSÃO PRIVADA</div><button class="icon-btn" id="topSettings" title="Configurações">⚙</button></div></header>
+    <section class="chat-view" id="chatView">
+      <div class="welcome" id="welcome"><div class="orb-wrap"><div class="orb-ring ring-one"></div><div class="orb-ring ring-two"></div><div class="orb-core"><div class="orb-glyph">J</div></div><div class="orb-spark spark-one"></div><div class="orb-spark spark-two"></div></div>
+        <div class="eyebrow"><span class="pulse"></span> SISTEMA ONLINE <span class="eyebrow-line"></span> V 1.0</div>
+        <h1>Bom dia, <span>operador.</span></h1><p class="welcome-copy">Sua central de inteligência pessoal está pronta.<br>O que vamos realizar hoje?</p>
+        <div class="suggestions"><button class="suggestion" data-prompt="Ajude-me a organizar minhas prioridades de hoje em um plano simples."><span class="suggestion-icon violet">◷</span><span><b>Planejar meu dia</b><small>Transforme tarefas em prioridades</small></span><span class="suggestion-arrow">↗</span></button><button class="suggestion" data-prompt="Explique um assunto complexo de forma clara, com exemplos práticos."><span class="suggestion-icon blue">⌘</span><span><b>Aprender algo novo</b><small>Explicações claras e práticas</small></span><span class="suggestion-arrow">↗</span></button><button class="suggestion" data-prompt="Ajude-me a desenvolver uma ideia do zero, com etapas e próximos passos."><span class="suggestion-icon gold">✧</span><span><b>Desenvolver uma ideia</b><small>Da ideia à execução</small></span><span class="suggestion-arrow">↗</span></button><button class="suggestion" data-prompt="Revise este texto para deixá-lo mais claro, natural e profissional: "><span class="suggestion-icon mint">✎</span><span><b>Escrever e revisar</b><small>Textos, mensagens e documentos</small></span><span class="suggestion-arrow">↗</span></button></div>
+      </div>
+      <div class="messages" id="messages" aria-live="polite"></div>
+      <div class="composer-wrap"><div class="composer" id="composer"><textarea id="promptInput" rows="1" placeholder="Pergunte qualquer coisa ao JARVIS..." aria-label="Escreva sua mensagem"></textarea><div class="composer-tools"><div class="composer-hint"><span class="keyboard-dot">↵</span> enviar <span class="hint-sep">·</span> <span>Shift + ↵ nova linha</span></div><div class="composer-buttons"><button class="tool-btn" id="voiceBtn" title="Ditado por voz" aria-label="Ditado por voz">♩</button><button class="send-btn" id="sendBtn" aria-label="Enviar mensagem"><span>Enviar</span><span class="send-arrow">↑</span></button></div></div></div><div class="composer-foot"><span>JARVIS pode cometer erros. Verifique informações importantes.</span><span class="privacy-note">◈ Seus chats ficam neste navegador</span></div></div>
+    </section>
+    <section class="secondary-view hidden" id="secondaryView"><div class="secondary-content" id="secondaryContent"></div></section>
+    <footer class="app-footer"><span><i></i> SISTEMA OPERACIONAL</span><span>J.A.R.V.I.S. <b>·</b> PERSONAL AI</span><span id="clock">--:--</span></footer>
+  </main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<div class="modal-backdrop hidden" id="settingsModal"><div class="modal"><div class="modal-head"><div><div class="modal-kicker">PREFERÊNCIAS DO SISTEMA</div><h2>Configurações</h2></div><button class="icon-btn" id="closeSettings">×</button></div><label class="field-label" for="assistantName">Nome do assistente</label><input id="assistantName" class="field" value="JARVIS" maxlength="40"><label class="field-label" for="systemPrompt">Personalidade / instruções personalizadas</label><textarea id="systemPrompt" class="field field-area" placeholder="Ex.: Responda de forma objetiva e em português..."></textarea><div class="setting-row"><div><b>Ler respostas em voz alta</b><small>Usa a voz disponível no seu navegador</small></div><label class="switch"><input type="checkbox" id="speakToggle"><span></span></label></div><div class="setting-row"><div><b>Enviar com Enter</b><small>Shift + Enter cria uma nova linha</small></div><label class="switch"><input type="checkbox" id="enterToggle" checked><span></span></label></div><div class="modal-note" id="apiNote">A chave da API fica no servidor, nunca neste formulário ou no navegador.</div><div class="modal-actions"><button class="secondary-btn" id="exportChats">Exportar conversas</button><button class="primary-btn" id="saveSettings">Salvar configurações</button></div></div></div>
+<script src="/app.js"></script>
+</body></html>
